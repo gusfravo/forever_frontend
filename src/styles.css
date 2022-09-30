@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'MontserratBold';
+    src: url('./assets/fonts/Montserrat-Bold.otf');
+}
+@font-face {
+    font-family: 'MontserratItalic';
+    src: url('./assets/fonts/Montserrat-Italic.otf');
+}
+@font-face {
+    font-family: 'MontserratLight';
+    src: url('./assets/fonts/Montserrat-Light.otf');
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat-Regular.otf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+
+body {
+    position: relative;
+    font-family: 'Montserrat','Roboto',"Helvetica Neue", sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Montserrat' !important;
+}
+/* html, body { height: 100%; } */
