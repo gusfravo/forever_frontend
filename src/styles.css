@@ -26,6 +26,7 @@
 body {
     position: relative;
     font-family: 'Montserrat','Roboto',"Helvetica Neue", sans-serif;
+    background: #fdfdfd;
 }
 h1,h2,h3,h4,h5,h6{
   font-family: 'Montserrat' !important;

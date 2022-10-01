@@ -1,1 +1,52 @@
-<p>admin works!</p>
+<mat-toolbar color="primary">
+   <span>Lista de Precios</span>
+</mat-toolbar>
+<div class="row justify-content-center mt-4 m-0">
+  <div class="col-11 col-md-10">
+    <mat-card class="example-card">
+      <mat-card-title></mat-card-title>
+      <mat-card-content>
+        <div class="row justify-content-end">
+          <div class="col-8 col-md-4">
+            <button mat-flat-button color="primary" style="width:100%;"> <i class="fas fa-plus"></i> Nuevo producto</button>
+          </div>
+        </div>
+        <table class="table table-general mt-3">
+          <thead class="header-table">
+            <tr>
+              <th class="">Código</th>
+              <th class="">Nombre</th>
+              <th class="">Precios</th>
+              <th class="">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let object of list">
+              <td>{{ object.main.code }}</td>
+              <td>{{ object.main.tradename }}</td>
+              <td>{{ object.system.typePerson == 'MoralPerson' ? 'Moral' : 'Física' }}</td>
+              <td>{{ object.customer }}</td>
+              <td>{{ object.totalMovil }}</td>
+              <td>{{ object.system.status == true ? 'Activo' : 'Inactivo'}}</td>
+              <td>
+                  <button mat-icon-button color="primary" class="orange" matTooltip="Editar" (click)="update(object.main.uuid);">
+                    <i class="material-icons">create</i>
+                  </button>
+                  <button mat-icon-button color="primary" class="orange" matTooltip="Usuarios" routerLink="/sti/customer/users/{{object.main.uuid}}">
+                    <i class="material-icons">group</i>
+                  </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row justify-content-end" style="margin-left:0px; margin-right:0px;">
+          <div class="col-12 col-md-6">
+            <mat-paginator [length]=pagination.total [pageSize]="10" [pageSizeOptions]=pagination.pageSizeOptions (page)="pageEvent = $event; onPaginateChange($event)">
+            </mat-paginator>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
