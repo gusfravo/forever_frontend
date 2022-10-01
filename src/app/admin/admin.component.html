@@ -8,7 +8,7 @@
       <mat-card-content>
         <div class="row justify-content-end">
           <div class="col-8 col-md-4">
-            <button mat-flat-button color="primary" style="width:100%;"> <i class="fas fa-plus"></i> Nuevo producto</button>
+            <button mat-flat-button color="primary" style="width:100%;" (click)="update('new')"> <i class="fas fa-plus"></i> Nuevo producto</button>
           </div>
         </div>
         <table class="table table-general mt-3">
@@ -16,25 +16,19 @@
             <tr>
               <th class="">Código</th>
               <th class="">Nombre</th>
-              <th class="">Precios</th>
+              <th class="">CC</th>
               <th class="">Acciones</th>
             </tr>
           </thead>
 
           <tbody>
             <tr *ngFor="let object of list">
-              <td>{{ object.main.code }}</td>
-              <td>{{ object.main.tradename }}</td>
-              <td>{{ object.system.typePerson == 'MoralPerson' ? 'Moral' : 'Física' }}</td>
-              <td>{{ object.customer }}</td>
-              <td>{{ object.totalMovil }}</td>
-              <td>{{ object.system.status == true ? 'Activo' : 'Inactivo'}}</td>
+              <td>{{ object.sku }}</td>
+              <td>{{ object.name }}</td>
+              <td>{{ object.ccUnit }}</td>
               <td>
-                  <button mat-icon-button color="primary" class="orange" matTooltip="Editar" (click)="update(object.main.uuid);">
+                  <button mat-icon-button color="primary" class="orange" matTooltip="Editar" (click)="update(object._id);">
                     <i class="material-icons">create</i>
-                  </button>
-                  <button mat-icon-button color="primary" class="orange" matTooltip="Usuarios" routerLink="/sti/customer/users/{{object.main.uuid}}">
-                    <i class="material-icons">group</i>
                   </button>
               </td>
             </tr>

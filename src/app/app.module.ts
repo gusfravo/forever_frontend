@@ -16,12 +16,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminProductUpdateComponent } from './admin/admin-product-update/admin-product-update.component';
+import { AdminLevelProductComponent } from './admin/admin-product-update/admin-level-product/admin-level-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
-    PriceListComponent
+    PriceListComponent,
+    AdminProductUpdateComponent,
+    AdminLevelProductComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +40,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonModule,
     MatCardModule,
     MatPaginatorModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
     ConnectionModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -41,6 +54,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     })
   ],
   providers: [],
+  entryComponents:[
+    AdminProductUpdateComponent,
+    AdminLevelProductComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

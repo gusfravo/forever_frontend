@@ -1,0 +1,41 @@
+<div class="row justify-content-end">
+  <div class="col-2">
+    <button mat-icon-button style="float:right;" (click)="close(false);">
+        <mat-icon fontIcon="clear"></mat-icon>
+    </button>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-11">
+    <h3>Nuevo Producto</h3>
+    <div class="row">
+      <mat-form-field appearance="fill" class="col-12 col-md-2">
+        <mat-label>SKU</mat-label>
+        <input matInput placeholder="SKU" name="sku" [(ngModel)]="object.sku">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="col-12 col-md-8">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Nombre" name="name" [(ngModel)]="object.name">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="col-12 col-md-2">
+        <mat-label>CC</mat-label>
+        <input matInput placeholder="SKU" name="sku" [(ngModel)]="object.ccUnit">
+      </mat-form-field>
+      <hr class="col-6 col-md-4">
+      <h4>Agregar nuevo nivel</h4>
+      <button mat-flat-button color="accent" class="col-6 col-md-4" (click)="update('new');"> <mat-icon fontIcon="touch_app"></mat-icon> Nuevo nivel</button>
+      <hr class="col-12 mt-2">
+      <h3>Precios</h3>
+      <mat-form-field appearance="fill" class="col-6 col-md-3" *ngFor="let object of productLevelPriceList; let i = index">
+        <mat-label>{{object.level.name}}</mat-label>
+        <input matInput type="number" placeholder="100.00" name="price{{i}}" [(ngModel)]="object.price" [disabled]="object.name == ''">
+      </mat-form-field>
+    </div>
+  </div>
+
+</div>
+<div class="row justify-content-end">
+  <div class="col-6 col-md-4">
+    <button mat-flat-button color="accent" style="width:100%;" (click)="send();" [disabled]="object.name == ''">Guardar</button>
+  </div>
+</div>
