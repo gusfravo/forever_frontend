@@ -1,0 +1,29 @@
+<div class="row justify-content-end">
+  <div class="col-2">
+    <button mat-icon-button style="float:right;" (click)="close(false);">
+        <mat-icon fontIcon="clear"></mat-icon>
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 ">
+    <h3>Precios disponibles</h3>
+  </div>
+  <div class="col-12">
+    <mat-radio-group
+    name="mPrice"
+      class="example-radio-group"
+      [(ngModel)]="object">
+      <mat-radio-button class="example-radio-button" *ngFor="let price of pricesList" [value]="price">
+        <strong>{{price.level.name}}</strong>  - {{price.price | currency:'CAD':'symbol-narrow'  }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+</div>
+<div class="row justify-content-end">
+  <button mat-flat-button color="primary"class="col-4 mr-1" (click)="close(false);">Cerrar</button>
+  <div class="col-1">
+
+  </div>
+  <button mat-flat-button color="accent" class="col-4 ml-1" (click)="savePrice()">Seleccionar</button>
+</div>

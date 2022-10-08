@@ -16,6 +16,7 @@
             <tr>
               <th class="">Código</th>
               <th class="">Nombre</th>
+              <th>Precios</th>
               <th class="">CC</th>
               <th class="">Acciones</th>
             </tr>
@@ -25,6 +26,22 @@
             <tr *ngFor="let object of list">
               <td>{{ object.sku }}</td>
               <td>{{ object.name }}</td>
+              <td>
+
+                <table class="table table-general mt-3">
+                  <tbody>
+                    <tr>
+                      <td *ngFor="let object of object.prices">
+                        <div class="productName">
+                          <span class="productNameStrong">{{ object.level.name }}</span>
+                          <span class="productNameItali">{{ object.price }}</span>
+                        </div>
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </td>
               <td>{{ object.ccUnit }}</td>
               <td>
                   <button mat-icon-button color="primary" class="orange" matTooltip="Editar" (click)="update(object._id);">
