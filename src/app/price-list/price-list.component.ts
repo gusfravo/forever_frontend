@@ -143,5 +143,13 @@ export class PriceListComponent implements OnInit {
     }
 
 
+    /**reinciar
+    */
+    realod(){
+      this.productSelected = [];
+      this.calculateTotal();
+    }
+
+
 
 }

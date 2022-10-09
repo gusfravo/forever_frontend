@@ -38,7 +38,6 @@
                 <thead class="header-table">
                   <tr>
                     <th>Nombre</th>
-                    <th>Precio</th>
                     <th>Cant.</th>
                     <th>Subtotal</th>
                     <th class="">Acciones</th>
@@ -49,25 +48,9 @@
                   <tr *ngFor="let object of productSelected; let i = index;">
                     <td>
                       <div class="productName">
-                        <span class="productNameStrong">{{ object.name }}</span>
-                        <span class="productNameItali">{{ object.sku }}</span>
+                        <span class="productNameStrong">{{ object.sku }} | {{ object.name }}</span>
+                        <span class="productNameItali">{{object.price | currency:'CAD':'symbol-narrow' }}</span>
                       </div>
-                      </td>
-                      <td>
-                        {{object.price | currency:'CAD':'symbol-narrow' }}
-                        <!-- <table class="table table-general mt-3">
-                          <tbody>
-                            <tr>
-                              <td *ngFor="let object of object.prices">
-                                <div class="productName">
-                                  <span class="productNameStrong">{{ object.level.name }}</span>
-                                  <span class="productNameItali">{{ object.price }}</span>
-                                </div>
-                                </td>
-                            </tr>
-                          </tbody>
-                        </table> -->
-
                       </td>
                       <td>
                         <input type="text" name="quantity{{i}}" [(ngModel)]="object.quantity" type="number" style="width: 50px;" (ngModelChange)="calculateTotal();">
