@@ -83,7 +83,7 @@ export class PriceListComponent implements OnInit {
         return item;
       });
       object.quantity = 1;
-      this.productSelected.push(object);
+      this.productSelected.unshift(object);
       this.calculateTotal();
     }
 
