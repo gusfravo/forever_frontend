@@ -74,15 +74,18 @@ export class AdminProductUpdateComponent implements OnInit {
           this.productLevelPriceList.push(aux);
         }
         // Buscamos los precios de un productos
-        this.productLevelPriceListTemp = await this.getPricenFromProduct(this.object);
-        for(let i = 0; i < this.productLevelPriceList.length; i++){
-          for(let item of this.productLevelPriceListTemp){
-            if(item.level._id == this.productLevelPriceList[i].level._id){
-              this.productLevelPriceList[i] = item;
-              break;
+        if(this.object._id != ''){
+          this.productLevelPriceListTemp = await this.getPricenFromProduct(this.object);
+          for(let i = 0; i < this.productLevelPriceList.length; i++){
+            for(let item of this.productLevelPriceListTemp){
+              if(item.level._id == this.productLevelPriceList[i].level._id){
+                this.productLevelPriceList[i] = item;
+                break;
+              }
             }
           }
         }
+
         console.log(this.productLevelPriceList);
       },error=>{
         console.log("error->level:list",error);
