@@ -41,6 +41,26 @@ export class PriceListComponent implements OnInit {
 
   levelList = [];
 
+  saleProductModel = {
+    unitPrice:0.0,
+    quantity:0,
+    subtotal:0.0,
+    total:0.0,
+    concept:'',
+    product:''
+  }
+
+
+  saleModel = {
+    _id:'',
+    folio:0.0,
+    subtotal:0.0,
+    total:0.0,
+    products:[]
+  }
+
+  sale = JSON.parse(JSON.stringify(this.saleModel));
+
     constructor(private connection:ConnectionService, private dialog:MatDialog) {
       this.metadata.searchBoxInput.pipe(debounceTime(700),
       switchMap(val => {
@@ -147,7 +167,49 @@ export class PriceListComponent implements OnInit {
     */
     realod(){
       this.productSelected = [];
+      this.sale = JSON.parse(JSON.stringify(this.saleModel));
       this.calculateTotal();
+    }
+
+
+    /**funcionalidad para crear un ticket
+    */
+    pay(){
+      if(this.productSelected.length > 0){
+        this.sale.folio = '';
+        this.sale.subtotal = this.metadata.sale.total;
+        this.sale.total = this.metadata.sale.total;
+        this.sale.products = [];
+        for(let item of this.productSelected){
+          let aux = JSON.parse(JSON.stringify(this.saleProductModel));
+          aux.unitPrice = item.price;
+          aux.quantity = item.quantity;
+          aux.subtotal = item.subtotal;
+          aux.total = item.total;
+          aux.concept = item.sku +' | '+item.name;
+          aux.product = item._id;
+          this.sale.products.push(aux);
+        };
+        this.connection.sendRequestAnonimus("sale:update",this.sale).subscribe(async(data:RequestObject)=>{
+          // console.log(data.object);
+          this.sale._id = data.object._id;
+          this.connection.sendRequestAnonimus("sale:printTicket",this.sale).subscribe(async(data:RequestObject)=>{
+            // console.log(":::::::::",data.object);
+            let uint8 = new Uint8Array(data.object.data)
+            let blob = new Blob([uint8])
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'ticket.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          },error=>{
+            console.log("error->sale:printTicket",error);
+          })
+        },error=>{
+          console.log("error->sale:update",error);
+        })
+      }
     }
 
 

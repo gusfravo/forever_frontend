@@ -36,6 +36,12 @@ let endpointList: Array<{ code: string, endpoint: string }> = [
   },{
     code: "product:searching",
     endpoint: "product/searching"
+  },{
+    code: "sale:update",
+    endpoint: "sale/update"
+  },{
+    code: "sale:printTicket",
+    endpoint: "sale/printTicket"
   }
 ];
 

@@ -84,7 +84,7 @@
             <h3>Total</h3>
             <h1 style="font-family: 'MontserratBold';">{{metadata.sale.total | currency:'CAD':'symbol-narrow'}}</h1>
           </div>
-
+          <button mat-flat-button class="col-12 col-md-4" color="primary" (click)="pay();" style="float: right;" [disabled]="this.productSelected.length == 0">PAGAR</button>
         </div>
       </mat-card-content>
     </mat-card>
